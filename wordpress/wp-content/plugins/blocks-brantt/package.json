@@ -1,0 +1,21 @@
+{
+	"name": "blocks-brantt",
+	"version": "0.1.0",
+	"description": "Show latest post block",
+	"author": "brant__",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"scripts": {
+		"build": "wp-scripts build --blocks-manifest",
+		"format": "wp-scripts format",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --blocks-manifest",
+		"copy-php": "find src -name '*.php' -exec bash -c 'for file; do dest=\"build/${file#src/}\"; mkdir -p \"$(dirname \"$dest\")\"; cp \"$file\" \"$dest\"; done' bash {} +"
+	},
+	"devDependencies": {
+		"@wordpress/scripts": "^30.18.0"
+	}
+}

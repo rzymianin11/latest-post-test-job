@@ -394,7 +394,7 @@ function wp_register_block_types_from_metadata_collection( $path, $manifest = ''
 	if ( $manifest ) {
 		wp_register_block_metadata_collection( $path, $manifest );
 	}
-
+	
 	$block_metadata_files = WP_Block_Metadata_Registry::get_collection_block_metadata_files( $path );
 	foreach ( $block_metadata_files as $block_metadata_file ) {
 		register_block_type_from_metadata( $block_metadata_file );
@@ -534,6 +534,7 @@ function register_block_type_from_metadata( $file_or_folder, $args = array() ) {
 				remove_block_asset_path_prefix( $metadata['render'] )
 			)
 		);
+
 		if ( $template_path ) {
 			/**
 			 * Renders the block on the server.
@@ -546,6 +547,7 @@ function register_block_type_from_metadata( $file_or_folder, $args = array() ) {
 			 *
 			 * @return string Returns the block content.
 			 */
+
 			$settings['render_callback'] = static function ( $attributes, $content, $block ) use ( $template_path ) {
 				ob_start();
 				require $template_path;

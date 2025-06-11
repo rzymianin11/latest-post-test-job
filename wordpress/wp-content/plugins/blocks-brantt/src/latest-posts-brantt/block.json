@@ -1,0 +1,50 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "brantt/latest-posts-brantt",
+	"version": "0.1.0",
+	"title": "Latest posts (brantt__)",
+	"category": "brantt_blocks",
+	"icon": "smiley",
+	"description": "Show latest post block",
+	"example": {},
+	"supports": {
+		"html": false
+	},
+	"textdomain": "brantt_blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css",
+	"viewScript": "file:./view.js",
+	"attributes": {
+		"title": {
+			"type": "string",
+			"default": "Latest posts"
+		},
+		"subtitle": {
+			"type": "string",
+			"default": "Lorem ipsum dolor sit amit..."
+		},
+		"buttonText": {
+			"type": "string",
+			"default": "View all posts"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": "/blog"
+		},
+		"featuredPostId": {
+			"type": "number",
+			"default": 0
+		},
+		"numberOfPosts": {
+			"type": "number",
+			"default": 3
+		},
+		"order": {
+			"type": "string",
+			"default": "DESC"
+		}
+	},
+	"render": "render.php"
+}
