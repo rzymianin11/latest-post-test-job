@@ -1,0 +1,50 @@
+<% if (fontfaceStyles) { %>
+<% if (fontPathVariables && stylesheet !== 'css') { %>
+<%= fontPathVariable %>
+<% } %>
+<% if (fontSrc1 && embed.length) { %>
+@font-face {
+    font-family:"<%= fontFamilyName %>";
+    src:<%= fontSrc1 %>;
+    font-weight:normal;
+    font-style:normal;
+}
+<% } %>@font-face {
+  font-family:"<%= fontFamilyName %>";<% if (fontSrc1) { %>
+  src:<%= fontSrc1 %>;<% }%>
+  src:<%= fontSrc2 %>;
+  font-weight:normal;
+  font-style:normal;
+}
+<% } %>
+
+$icons: (
+<% _.forEach(glyphs, function(glyph, index) { %>
+  ${ glyph }: "${ codepoints[index] }",<% }); %>
+);
+
+@mixin icon($icon) {
+  font-family: "${ fontFamilyName }";
+  $code: map-get($icons, $icon);
+  content: unquote('\'\\#{ $code }\'');
+}
+
+.i {
+  font-family: "${ fontFamilyName }";
+  display:inline-block;
+  line-height:1;
+  font-weight:normal;
+  font-style:normal;
+  speak:none;
+  text-decoration:inherit;
+  text-transform:none;
+  text-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+<% _.forEach(glyphs, function(glyph, index) { %>
+.i-${ glyph }:before {
+  @include icon(${ glyph });
+}
+<% }); %>

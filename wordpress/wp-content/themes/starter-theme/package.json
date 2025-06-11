@@ -11,14 +11,23 @@
 	},
 	"scripts": {
 		"watch": "webpack serve && wp-scripts start",
-		"build": "wp-scripts build"
+		"build": "wp-scripts build",
+		"images": "grunt imagemin",
+		"icons": "grunt clean --icons; grunt webfont"
 	},
 	"browserslist": [
 		"last 2 versions"
 	],
 	"dependencies": {
-		"bootstrap": "^5.3.1",
 		"@popperjs/core": "^2.11.8",
+		"bootstrap": "^5.3.1",
+		"grunt": "^1.6.1",
+		"grunt-contrib-clean": "^2.0.1",
+		"grunt-contrib-copy": "^1.0.0",
+		"grunt-contrib-htmlmin": "^3.1.0",
+		"grunt-contrib-imagemin": "^4.0.0",
+		"grunt-w3c-html-validation": "^0.1.9",
+		"grunt-webfont": "^1.7.2",
 		"jquery": "^3.7.0"
 	},
 	"devDependencies": {
