@@ -1,0 +1,45 @@
+
+
+@font-face {
+  font-family:"Icons";
+  src:url("../../global/fonts/icons-3d777ac3ddcf8bbab23b39c7c758054e.woff") format("woff2"),
+		url("../../global/fonts/icons-3d777ac3ddcf8bbab23b39c7c758054e.woff?3d777ac3ddcf8bbab23b39c7c758054e") format("woff");
+  font-weight:normal;
+  font-style:normal;
+}
+
+
+$icons: (
+
+  arrow-right: "f101",
+  star: "f102",
+);
+
+@mixin icon($icon) {
+  font-family: "Icons";
+  $code: map-get($icons, $icon);
+  content: unquote('\'\\#{ $code }\'');
+}
+
+.i {
+  font-family: "Icons";
+  display:inline-block;
+  line-height:1;
+  font-weight:normal;
+  font-style: normal !important;
+  speak:none;
+  text-decoration:inherit;
+  text-transform:none;
+  text-rendering:auto;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+
+.i-arrow-right:before {
+  @include icon(arrow-right);
+}
+
+.i-star:before {
+  @include icon(star);
+}

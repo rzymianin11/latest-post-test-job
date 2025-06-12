@@ -127,20 +127,172 @@ function Edit({
           })
         })]
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
       ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useBlockProps)(),
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
-        children: title
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-        class: "h1",
-        children: subtitle
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-        children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Wyróżniony wpis ID:', 'brantt_blocks'), " ", featuredPostId]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-        children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Liczba postów do wyświetlenia:', 'brantt_blocks'), " ", numberOfPosts]
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
-        children: [(0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Kolejność:', 'brantt_blocks'), " ", order]
-      })]
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+        className: 'brantt-latest-posts-block',
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: 'wrapper',
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: 'row header align-items-start',
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: 'col d-flex flex-column titles',
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                children: "Latest posts"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                className: "h1",
+                children: "Lorem ipsum dolor sit amit\u2026"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: 'col-auto ml-auto',
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
+                className: 'btn btn-inline view-more',
+                href: "/blog",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                  children: "View all posts"
+                }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                  className: 'i i-arrow-right'
+                })]
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+            className: 'brantt-latest-posts-content',
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: 'row',
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: 'featured-post',
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  className: 'featured-post-thumbnail',
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    fetchpriority: "high",
+                    decoding: "async",
+                    width: "300",
+                    height: "223",
+                    src: "http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png",
+                    className: 'attachment-medium size-medium wp-post-image',
+                    alt: "",
+                    srcset: "http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png 300w, http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x.png 738w",
+                    sizes: "(max-width: 300px) 100vw, 300px"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: 'featured-post-content',
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    className: 'featured_mark',
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
+                      className: 'i i-star'
+                    }), "Featured post"]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
+                    className: 'post_title',
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                      href: "http://localhost/career-changer-guide/",
+                      children: "CAREER CHANGER GUIDE"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                    children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
+                  })]
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: 'recent_posts_wrapper',
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
+                className: "recent_posts row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  className: "col-lg-4 col-sm-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    className: 'bg',
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      className: 'post-thumbnail',
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                        decoding: "async",
+                        width: "350",
+                        height: "217",
+                        src: "http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png",
+                        className: 'attachment- size- wp-post-image',
+                        alt: "",
+                        medium: "",
+                        srcset: "http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1-300x186.png 300w",
+                        sizes: "(max-width: 350px) 100vw, 350px"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: 'post-content',
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                        children: "Lorem ipsum\uFFFDdolor sit amet"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        className: 'btn-readmore',
+                        href: "http://localhost/lorem-ipsum-dolor-sit-amet-3/",
+                        children: "Read more"
+                      })]
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  className: "col-lg-4 col-sm-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    className: 'bg',
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      className: 'post-thumbnail',
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                        decoding: "async",
+                        width: "350",
+                        height: "217",
+                        src: "http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png",
+                        className: 'attachment- size- wp-post-image',
+                        alt: "",
+                        medium: "",
+                        srcset: "http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1-300x186.png 300w",
+                        sizes: "(max-width: 350px) 100vw, 350px"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: 'post-content',
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                        children: "Lorem ipsum\uFFFDdolor sit amet"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        className: 'btn-readmore',
+                        href: "http://localhost/lorem-ipsum-dolor-sit-amet-2/",
+                        children: "Read more"
+                      })]
+                    })]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                  className: "col-lg-4 col-sm-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                    className: 'bg',
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                      className: 'post-thumbnail',
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                        loading: "lazy",
+                        decoding: "async",
+                        width: "350",
+                        height: "217",
+                        src: "http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png",
+                        className: 'attachment- size- wp-post-image',
+                        alt: "",
+                        medium: "",
+                        srcset: "http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1-300x186.png 300w",
+                        sizes: "auto, (max-width: 350px) 100vw, 350px"
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                      className: 'post-content',
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+                        children: "Lorem ipsum\uFFFDdolor sit amet"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
+                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+                        className: 'btn-readmore',
+                        href: "http://localhost/lorem-ipsum-dolor-sit-amet/",
+                        children: "Read more"
+                      })]
+                    })]
+                  })
+                })]
+              })
+            })]
+          })]
+        })
+      })
     })]
   });
 }
