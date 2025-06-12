@@ -10,7 +10,6 @@ return array(
 		'category' => 'brantt_blocks',
 		'icon' => 'smiley',
 		'description' => 'Show latest post block',
-		'render' => 'render.php',
 		'example' => array(
 			
 		),
@@ -51,6 +50,7 @@ return array(
 				'type' => 'string',
 				'default' => 'DESC'
 			)
-		)
+		),
+		'render' => 'render.php'
 	)
 );

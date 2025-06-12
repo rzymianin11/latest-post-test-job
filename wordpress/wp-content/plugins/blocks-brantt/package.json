@@ -12,8 +12,7 @@
 		"lint:js": "wp-scripts lint-js",
 		"packages-update": "wp-scripts packages-update",
 		"plugin-zip": "wp-scripts plugin-zip",
-		"start": "wp-scripts start --blocks-manifest",
-		"copy-php": "find src -name '*.php' -exec bash -c 'for file; do dest=\"build/${file#src/}\"; mkdir -p \"$(dirname \"$dest\")\"; cp \"$file\" \"$dest\"; done' bash {} +"
+		"start": "wp-scripts start --blocks-manifest --webpack-copy-php"
 	},
 	"devDependencies": {
 		"@wordpress/scripts": "^30.18.0"

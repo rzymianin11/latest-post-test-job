@@ -14,10 +14,8 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
-
-//require_once __DIR__ . '/build/latest-posts-brantt/render.php';
 
 function brantt_latest_posts_brantt_block_init() {
     if ( function_exists( 'wp_register_block_types_from_metadata_collection' ) ) {

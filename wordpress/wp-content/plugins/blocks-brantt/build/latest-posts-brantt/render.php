@@ -2,6 +2,7 @@
 
     $featured_post_id = intval( $attributes['featuredPostId'] ?? 0 );
     $title = esc_html( $attributes['title'] ?? 'Najnowsze wpisy' );
+    $subtitle = esc_html( $attributes['subtitle'] ?? 'Lorem ipsum dolor sit amit...' );
     $count = intval( $attributes['numberOfPosts'] ?? 3 );
     $order = in_array( strtoupper( $attributes['order'] ?? '' ), [ 'ASC', 'DESC' ] ) ? strtoupper( $attributes['order'] ) : 'DESC';
     $button_text = esc_html( $attributes['buttonText'] ?? 'View all posts' );
@@ -15,17 +16,16 @@
         'post__not_in'   => $featured_post_id ? [ $featured_post_id ] : [],
     ]);
 
-    ob_start();
+    echo '<div class="brantt-latest-posts-block wrapper">';
+        echo '<div class="container">';
+            echo '<div class="row">';
 
-    echo '<div class="brantt-latest-posts-block">';
+                echo '<div style="margin-bottom: 10px;">';
+                echo '<a class="btn btn-inline view-more" href="' . $button_url . '"><span>' . $button_text . '</span> <i class="i i-arrow-right"></i></a>';
+                echo '</div>';
 
-    // Przycisk "View all posts" na górze
-    echo '<div style="margin-bottom: 10px;">';
-    echo '<a class="brantt-button" href="' . $button_url . '" style="display:inline-block;padding:8px 16px;background:#0073aa;color:#fff;text-decoration:none;border-radius:4px;">' . $button_text . '</a>';
-    echo '</div>';
-
-    // Tytuł bloku
-    echo '<h3>' . $title . '</h3>';
+                echo '<h3>' . $title . '</h3>';
+                echo '<h4 class="h1">' . $subtitle . '</h4>';
 
     // Featured post (wyróżniony wpis)
     if ( $featured_post_id ) {
@@ -59,11 +59,6 @@
     } else {
         echo '<p>Brak wpisów.</p>';
     }
-
+               echo '</div>';
+            echo '</div>';
     echo '</div>';
-
-    wp_reset_postdata();
-
-
-
-

@@ -1,0 +1,167 @@
+@use 'variables' as *;
+@use "sass:math";
+
+@mixin placeholder {
+  ::-webkit-input-placeholder {@content}
+  :-moz-placeholder           {@content}
+  ::-moz-placeholder          {@content}
+  :-ms-input-placeholder      {@content}  
+}
+
+@mixin font-primary-regular {
+  font-family: $font-primary;
+  font-weight: $font-primary-regular;
+}
+
+@mixin font-primary-bold {
+  font-family: $font-primary;
+  font-weight: $font-primary-bold;
+}
+
+@mixin transition-primary($property: all, $delay: 0s) {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-property: unquote($property);
+  transition-delay: $delay;
+}
+
+@mixin transition-secondary($property: all, $delay: 0s) {
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-property: unquote($property);
+  transition-delay: $delay;
+}
+
+@mixin transition-tertiary($property: all, $delay: 0s) {
+  transition-duration: 2s;
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-property: unquote($property);
+  transition-delay: $delay;
+}
+
+@mixin reset($type: null) {
+  @if $type == spacing {
+    margin: 0;
+    padding: 0;
+  }
+  @if $type == list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      margin: 0;
+      padding: 0;
+    }
+  }
+  @if $type == button {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+  }
+  @if $type == everything {
+    background-color: transparent;
+    border: 0;
+    float: none;
+    height: auto;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: static;
+    width: auto;
+  }
+}
+
+@mixin fill-parent {
+  bottom: 0;
+  content: ' ';
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+@mixin link-inherit {
+  a:not(.btn) {
+    color: inherit;
+
+    &:hover,
+    &:focus {
+      color: $color-primary;
+    }
+  }
+}
+
+%link-secondary {
+  @include transition-primary;
+  color: $color-secondary;
+
+  &:hover {
+    color: $color-primary;
+  }
+
+  &:focus {
+    outline: 1px solid currentColor;
+  }
+}
+
+@mixin contrast {
+  [data-theme='contrast'] & {
+    @content;
+  }
+}
+
+@mixin link-underline {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    bottom: 0;
+    background-color: currentColor;
+    content: ' ';
+    transform-origin: left center;
+    height: 1px;
+  }
+
+  &:hover {
+    &:not(:disabled):not(.disabled) {
+      &::after {
+        transform-origin: right center;
+        transform: scaleX(0);
+      }
+    }
+  }
+
+  &:focus {
+    outline: 1px solid $color-primary;
+  }
+}
+
+@mixin headers {
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3,
+  h4,
+  .h4,
+  h5,
+  .h5,
+  h6,
+  .h6 {
+    @content;
+  }
+}
+
+@function stripUnit($value) {
+    @return math.div($value, $value * 0 + 1);
+}
+@function rem($pxValue) {
+    @return #{math.div(stripUnit($pxValue), stripUnit($base))}rem;
+}

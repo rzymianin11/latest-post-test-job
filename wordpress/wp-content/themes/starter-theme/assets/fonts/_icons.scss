@@ -2,8 +2,8 @@
 
 @font-face {
   font-family:"Icons";
-  src:url("../../assets/fonts/icons-f4b6437ce5b54813a956003951c2c52a.woff2?f4b6437ce5b54813a956003951c2c52a") format("woff2"),
-		url("../../assets/fonts/icons-f4b6437ce5b54813a956003951c2c52a.woff?f4b6437ce5b54813a956003951c2c52a") format("woff");
+  src:url("/fonts/icons-3d777ac3ddcf8bbab23b39c7c758054e.woff2?3d777ac3ddcf8bbab23b39c7c758054e") format("woff2"),
+		url("/fonts/icons-3d777ac3ddcf8bbab23b39c7c758054e.woff?3d777ac3ddcf8bbab23b39c7c758054e") format("woff");
   font-weight:normal;
   font-style:normal;
 }
@@ -11,7 +11,8 @@
 
 $icons: (
 
-  star: "f101",
+  arrow-right: "f101",
+  star: "f102",
 );
 
 @mixin icon($icon) {
@@ -25,7 +26,7 @@ $icons: (
   display:inline-block;
   line-height:1;
   font-weight:normal;
-  font-style:normal;
+  font-style: normal !important;
   speak:none;
   text-decoration:inherit;
   text-transform:none;
@@ -34,6 +35,10 @@ $icons: (
   -moz-osx-font-smoothing:grayscale;
 }
 
+
+.i-arrow-right:before {
+  @include icon(arrow-right);
+}
 
 .i-star:before {
   @include icon(star);

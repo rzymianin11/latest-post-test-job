@@ -1,9 +1,7 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+@forward '../../global/variables';
+@forward '../../global/mixins';
+@use '../../global/variables' as *;
+@use '../../global/mixins' as *;
 
 .wp-block-brantt-latest-posts-brantt {
 	background-color: #21759b;
@@ -12,14 +10,33 @@
 }
 
 .featured-post {
-    border: 2px solid #0073aa;
-    padding: 12px;
-    margin-bottom: 20px;
     background: #f0f8ff;
 	h4 {
 		margin: 0 0 10px;
 	}
 	p {
 		margin: 0;
+	}
+}
+
+.brantt-latest-posts-block {
+	&.wrapper {
+		.btn {
+			&.btn-inline {
+				background: none;
+				font-weight: 700;
+				text-decoration: none;
+				font-size: rem(20px);
+				span {
+					text-decoration: underline;
+					display: inline-block;
+					vertical-align: middle;
+					margin-right: 0.5em;
+				}
+				&.view-more {
+					color: $primary-green-color;
+				}
+			}
+		}
 	}
 }
