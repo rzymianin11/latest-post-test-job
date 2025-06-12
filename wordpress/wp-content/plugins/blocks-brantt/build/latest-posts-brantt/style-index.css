@@ -4,7 +4,7 @@
 .brantt-latest-posts-block {
   position: relative;
 }
-.brantt-latest-posts-block:after {
+.brantt-latest-posts-block:before {
   content: "";
   background-color: rgba(34, 180, 171, 0.06);
   position: absolute;
@@ -13,9 +13,10 @@
   right: 0;
   left: 0;
   border-radius: 5px;
+  z-index: -1;
 }
 @media (max-width: 1400px) {
-  .brantt-latest-posts-block:after {
+  .brantt-latest-posts-block:before {
     border-radius: 0;
     right: calc((100vw - 100%) / 2 * -1);
     left: calc((100vw - 100%) / 2 * -1);
@@ -88,7 +89,7 @@
 }
 @media (max-width: 992px) {
   .brantt-latest-posts-block .wrapper .featured-post .featured-post-thumbnail {
-    flex: 1 0 100%;
+    flex: 1 0 369px;
   }
 }
 .brantt-latest-posts-block .wrapper .featured-post .featured-post-thumbnail img {

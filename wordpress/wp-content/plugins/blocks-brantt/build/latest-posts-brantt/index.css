@@ -12029,6 +12029,7 @@ textarea.form-control-lg {
   right: 0;
   left: 0;
   border-radius: 5px;
+  z-index: -1;
 }
 @media (max-width: 1400px) {
   .brantt-latest-posts-block:after {
