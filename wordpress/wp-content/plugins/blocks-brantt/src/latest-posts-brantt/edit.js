@@ -15,6 +15,28 @@ export default function Edit({ attributes, setAttributes }) {
 		{ label: __('— Brak wyróżnionego wpisu —', 'brantt_blocks'), value: 0 },
 	];
 
+    const featuredPost = useSelect((select) => {
+        if (!featuredPostId) return null;
+        const posts = select('core').getEntityRecords('postType', 'post', {
+            include: [featuredPostId],
+            _embed: true,
+        });
+        return posts ? posts[0] : null;
+    }, [featuredPostId]);
+
+    console.log({ featuredPostId, numberOfPosts, order });
+    const recentPosts = useSelect((select) => {
+        if (!featuredPostId && !numberOfPosts) return [];
+        return select('core').getEntityRecords('postType', 'post', {
+            per_page: numberOfPosts,
+            order: order.toLowerCase(),
+            status: 'publish',
+            orderby: 'date',
+            exclude: featuredPostId ? [featuredPostId] : [],
+            _embed: true,
+        });
+    }, [featuredPostId, numberOfPosts, order]);
+
  	if (posts) {
 		posts.forEach(post => {
 		postOptions.push({ label: post.title.rendered || `(ID: ${post.id})`, value: post.id });
@@ -76,54 +98,36 @@ export default function Edit({ attributes, setAttributes }) {
                     <div className={'wrapper'}>
                     <div className={'row header align-items-start'}>
                         <div className={'col d-flex flex-column titles'}>
-                            <h3>Latest posts</h3>
-                            <h4 className="h1">Lorem ipsum dolor sit amit…</h4>
+                            <h3>{ title }</h3>
+                            <h4 className="h1">{ subtitle }</h4>
                         </div>
-                        <div className={'col-auto ml-auto'}><a className={'btn btn-inline view-more'} href="/blog"><span>View all posts</span> <i className={'i i-arrow-right'}></i></a></div>
+                        <div className={'col-auto ml-auto'}><a className={'btn btn-inline view-more'} href={buttonUrl}><span>{buttonText}</span> <i className={'i i-arrow-right'}></i></a></div>
                     </div>
                     <div className={'brantt-latest-posts-content'}>
                         <div className={'row'}>
                             <div className={'featured-post'}>
-                            <div className={'featured-post-thumbnail'}><img fetchpriority="high" decoding="async" width="300" height="223" src="http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png" className={'attachment-medium size-medium wp-post-image'} alt="" srcset="http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png 300w, http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x.png 738w" sizes="(max-width: 300px) 100vw, 300px"/></div>
+                            <div className={'featured-post-thumbnail'}><img fetchpriority="high" decoding="async" width="300" height="223" src={featuredPost?._embedded['wp:featuredmedia'][0]?.media_details?.sizes?.medium?.source_url} className={'attachment-medium size-medium wp-post-image'} alt="" sizes="(max-width: 300px) 100vw, 300px"/></div>
                             <div className={'featured-post-content'}>
                                 <div className={'featured_mark'}><i className={'i i-star'}></i>Featured post</div>
-                                <h4 className={'post_title'}><a href="http://localhost/career-changer-guide/">CAREER CHANGER GUIDE</a></h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate.</p>
+                                <h4 className={'post_title'}><a href="http://localhost/career-changer-guide/">{featuredPost?.title?.raw}</a></h4>
+                                <p>{featuredPost?.excerpt?.raw}</p>
                             </div>
                             </div>
                         </div>
                         <div className={'recent_posts_wrapper'}>
                             <ul className="recent_posts row">
-                            <li className="col-lg-4 col-sm-12">
-                                <div className={'bg'}>
-                                    <div className={'post-thumbnail'}><img decoding="async" width="350" height="217" src="http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png" className={'attachment- size- wp-post-image'} alt="" medium="" srcset="http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1-300x186.png 300w" sizes="(max-width: 350px) 100vw, 350px"/></div>
-                                    <div className={'post-content'}>
-                                        <h3>Lorem ipsum�dolor sit amet</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate.</p>
-                                        <a className={'btn-readmore'} href="http://localhost/lorem-ipsum-dolor-sit-amet-3/">Read more</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="col-lg-4 col-sm-12">
-                                <div className={'bg'}>
-                                    <div className={'post-thumbnail'}><img decoding="async" width="350" height="217" src="http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png" className={'attachment- size- wp-post-image'} alt="" medium="" srcset="http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1-300x186.png 300w" sizes="(max-width: 350px) 100vw, 350px"/></div>
-                                    <div className={'post-content'}>
-                                        <h3>Lorem ipsum�dolor sit amet</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate</p>
-                                        <a className={'btn-readmore'} href="http://localhost/lorem-ipsum-dolor-sit-amet-2/">Read more</a>
-                                    </div>
-                                </div>
-                            </li>
-                            <li className="col-lg-4 col-sm-12">
-                                <div className={'bg'}>
-                                    <div className={'post-thumbnail'}><img loading="lazy" decoding="async" width="350" height="217" src="http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png" className={'attachment- size- wp-post-image'} alt="" medium="" srcset="http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1-300x186.png 300w" sizes="auto, (max-width: 350px) 100vw, 350px"/></div>
-                                    <div className={'post-content'}>
-                                        <h3>Lorem ipsum�dolor sit amet</h3>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate.</p>
-                                        <a className={'btn-readmore'} href="http://localhost/lorem-ipsum-dolor-sit-amet/">Read more</a>
-                                    </div>
-                                </div>
-                            </li>
+                                {recentPosts?.map((post) => (
+                                    <li className="col-lg-4 col-sm-12">
+                                        <div className={'bg'}>
+                                            <div className={'post-thumbnail'}><img decoding="async" src={post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.medium?.source_url} className={'attachment- size- wp-post-image'} alt="" /></div>
+                                            <div className={'post-content'}>
+                                                <h3>{post?.title?.raw}</h3>
+                                                <p>{post?.excerpt?.raw}</p>
+                                                <a className={'btn-readmore'} href={post?.link}>Read more</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                               ))}
                             </ul>
                         </div>
                     </div>

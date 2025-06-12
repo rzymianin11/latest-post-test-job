@@ -61,6 +61,30 @@ function Edit({
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('— Brak wyróżnionego wpisu —', 'brantt_blocks'),
     value: 0
   }];
+  const featuredPost = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    if (!featuredPostId) return null;
+    const posts = select('core').getEntityRecords('postType', 'post', {
+      include: [featuredPostId],
+      _embed: true
+    });
+    return posts ? posts[0] : null;
+  }, [featuredPostId]);
+  console.log({
+    featuredPostId,
+    numberOfPosts,
+    order
+  });
+  const recentPosts = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_3__.useSelect)(select => {
+    if (!featuredPostId && !numberOfPosts) return [];
+    return select('core').getEntityRecords('postType', 'post', {
+      per_page: numberOfPosts,
+      order: order.toLowerCase(),
+      status: 'publish',
+      orderby: 'date',
+      exclude: featuredPostId ? [featuredPostId] : [],
+      _embed: true
+    });
+  }, [featuredPostId, numberOfPosts, order]);
   if (posts) {
     posts.forEach(post => {
       postOptions.push({
@@ -138,18 +162,18 @@ function Edit({
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
               className: 'col d-flex flex-column titles',
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-                children: "Latest posts"
+                children: title
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h4", {
                 className: "h1",
-                children: "Lorem ipsum dolor sit amit\u2026"
+                children: subtitle
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: 'col-auto ml-auto',
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("a", {
                 className: 'btn btn-inline view-more',
-                href: "/blog",
+                href: buttonUrl,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
-                  children: "View all posts"
+                  children: buttonText
                 }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("i", {
                   className: 'i i-arrow-right'
                 })]
@@ -168,10 +192,9 @@ function Edit({
                     decoding: "async",
                     width: "300",
                     height: "223",
-                    src: "http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png",
+                    src: featuredPost?._embedded['wp:featuredmedia'][0]?.media_details?.sizes?.medium?.source_url,
                     className: 'attachment-medium size-medium wp-post-image',
                     alt: "",
-                    srcset: "http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x-300x223.png 300w, http://localhost/wp-content/uploads/2025/06/fernando-brasil-XM_2oqcbpIQ-unsplash-2@2x.png 738w",
                     sizes: "(max-width: 300px) 100vw, 300px"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
@@ -185,18 +208,18 @@ function Edit({
                     className: 'post_title',
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                       href: "http://localhost/career-changer-guide/",
-                      children: "CAREER CHANGER GUIDE"
+                      children: featuredPost?.title?.raw
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                    children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
+                    children: featuredPost?.excerpt?.raw
                   })]
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
               className: 'recent_posts_wrapper',
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("ul", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("ul", {
                 className: "recent_posts row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
+                children: recentPosts?.map(post => /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
                   className: "col-lg-4 col-sm-12",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                     className: 'bg',
@@ -204,90 +227,24 @@ function Edit({
                       className: 'post-thumbnail',
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
                         decoding: "async",
-                        width: "350",
-                        height: "217",
-                        src: "http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png",
+                        src: post._embedded?.['wp:featuredmedia']?.[0]?.media_details?.sizes?.medium?.source_url,
                         className: 'attachment- size- wp-post-image',
-                        alt: "",
-                        medium: "",
-                        srcset: "http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/guilherme-stecanella-_dH-oQF9w-Y-unsplash-1-300x186.png 300w",
-                        sizes: "(max-width: 350px) 100vw, 350px"
+                        alt: ""
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
                       className: 'post-content',
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-                        children: "Lorem ipsum\uFFFDdolor sit amet"
+                        children: post?.title?.raw
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
+                        children: post?.excerpt?.raw
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
                         className: 'btn-readmore',
-                        href: "http://localhost/lorem-ipsum-dolor-sit-amet-3/",
+                        href: post?.link,
                         children: "Read more"
                       })]
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                  className: "col-lg-4 col-sm-12",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: 'bg',
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                      className: 'post-thumbnail',
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                        decoding: "async",
-                        width: "350",
-                        height: "217",
-                        src: "http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png",
-                        className: 'attachment- size- wp-post-image',
-                        alt: "",
-                        medium: "",
-                        srcset: "http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/eye-for-ebony-vYpbBtkDhNE-unsplash-1-300x186.png 300w",
-                        sizes: "(max-width: 350px) 100vw, 350px"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                      className: 'post-content',
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-                        children: "Lorem ipsum\uFFFDdolor sit amet"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                        className: 'btn-readmore',
-                        href: "http://localhost/lorem-ipsum-dolor-sit-amet-2/",
-                        children: "Read more"
-                      })]
-                    })]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("li", {
-                  className: "col-lg-4 col-sm-12",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                    className: 'bg',
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
-                      className: 'post-thumbnail',
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
-                        loading: "lazy",
-                        decoding: "async",
-                        width: "350",
-                        height: "217",
-                        src: "http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png",
-                        className: 'attachment- size- wp-post-image',
-                        alt: "",
-                        medium: "",
-                        srcset: "http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1.png 350w, http://localhost/wp-content/uploads/2025/06/vinicius-wiesehofer-UOavP_Z38lE-unsplash-1-300x186.png 300w",
-                        sizes: "auto, (max-width: 350px) 100vw, 350px"
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
-                      className: 'post-content',
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
-                        children: "Lorem ipsum\uFFFDdolor sit amet"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
-                        children: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque maximus, justo sed rutrum vulputate."
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
-                        className: 'btn-readmore',
-                        href: "http://localhost/lorem-ipsum-dolor-sit-amet/",
-                        children: "Read more"
-                      })]
-                    })]
-                  })
-                })]
+                }))
               })
             })]
           })]
